@@ -3,9 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
     <title>api</title>
 </head>
 <body>
+    <h1>Fetching Roblox Outfits...</h1>
+    <pre id="output">Loading...</pre>
+
+    <script>
+        // Get the URL path
+        const path = window.location.pathname; // Example: "/123456/outfits"
+        const segments = path.split('/').filter(Boolean); // Remove empty values
+        
+        if (segments.length < 2 || segments[1] !== "outfits") {
+            document.getElementById('output').innerText = "Invalid URL format. Use: /userid/outfits";
+        } else {
+            const userId = segments[0]; // Extract User ID
+            const apiUrl = `https://avatar.roblox.com/v1/users/${userId}/outfits`;
+
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('output').innerText = JSON.stringify(data, null, 2);
+                })
+                .catch(error => {
+                    document.getElementById('output').innerText = "Error fetching data: " + error;
+                });
+        }
+    </script>
 </body>
 </html>
