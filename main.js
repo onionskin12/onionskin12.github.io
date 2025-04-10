@@ -1,5 +1,7 @@
 var pw = document.getElementById("password");
-function checkPW() {
+var btn = document.getElementById("btn");
+
+btn.onclick = function() {
   if (pw.value === "test") {
     document.innerHTML = `<!DOCTYPE html>
 <html lang="en">
