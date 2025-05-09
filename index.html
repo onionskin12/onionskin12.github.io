@@ -4,6 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+
+    <!-- Apple-specific meta tags for standalone mode -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="My App">
+    <link rel="apple-touch-icon" href="icon-192.png">
+    <meta name="theme-color" content="#000000">
 </head>
 <body>
     <h2>Enter Password</h2>
@@ -11,6 +21,16 @@
     <input type="password" id="password">
     <br><br>
     <input id="btn" type="submit" value="Submit">
+
     <script src="main.js"></script>
+
+    <!-- Register service worker -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js')
+                .then(reg => console.log('Service worker registered.', reg))
+                .catch(err => console.error('Service worker registration failed:', err));
+        }
+    </script>
 </body>
 </html>
